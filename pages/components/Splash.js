@@ -1,0 +1,42 @@
+import Head from 'next/head'
+import Footer from "./Footer";
+import { useState, useEffect } from "react"
+
+export default function Splash() {
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.disconnect();
+      }
+    }, {
+      rootMargin: '0px',
+      threshold: 0.25,
+    });
+
+    observer.observe(document.querySelector('#fade-in'));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center justify-center h-screen bg-neutral-900">
+      <Head>
+        <title>AA</title>
+      </Head>
+      <div className='flex justify-center pt-72 pb-32'>
+        <div 
+            id="fade-in"
+            className={`transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <p className=' font-poiret text-3xl  text-champagne '>Asif Ali | <span className='font-extrabold'>Portfolio</span></p>
+        </div>
+      </div>
+      <Footer />
+    </div>
+  )
+}

@@ -1,0 +1,60 @@
+import '@/styles/globals.css'
+import type { AppProps } from 'next/app'
+import { AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import Splash from "./components/Splash";
+import {BsFillMoonStarsFill, BsFillBrightnessHighFill} from 'react-icons/bs' ;
+import Link from 'next/link';
+import Cursor from "./components/Cursor";
+
+
+export default function App({ Component, pageProps, router }: AppProps) {
+
+  const [darkMode, setDarkMode] = useState(false);
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+      const timer = setTimeout(() => setLoading(false), 3000);
+      return () => clearTimeout(timer);
+    }, []) 
+
+  
+  return (
+    <>
+      {loading ? <Splash /> : (
+          <AnimatePresence>
+            <div className={darkMode ? 'dark' : ''}>
+              <nav className='text-black text-lg px-10 flex justify-between z-20 relative dark:text-champagne '>
+                <Link href="/">
+                  <div className='text-3xl font-gloock p-2 underline underline-offset-4'>Asif</div>
+                </Link>
+                <ul className='font-gloock flex items-center px-10'>
+                  <li className=' px-2 pr-10 '> 
+                    {darkMode ? <BsFillBrightnessHighFill 
+                      onClick={() => setDarkMode(!darkMode)}/> : 
+                      <BsFillMoonStarsFill 
+                      onClick={() => setDarkMode(darkMode => !darkMode)}
+                     />}
+                  </li>
+                  <li className='hover:underline hover:text-2xl px-2'>
+                    <Link href='/components/Projects'>Projects</Link>
+                  </li>
+                  <li className='hover:underline hover:text-2xl  px-2 '>
+                    <a href="https://drive.google.com/file/d/1LpgDmR69294mQyh2HYXyx5ehHFqqKFCJ/view?usp=sharing" 
+                      target='_blank'
+                      rel="noopener noreferrer">
+                      Resume
+                    </a>
+                  </li>
+                </ul>
+              </nav>  
+            <Component key={router.pathname} {...pageProps} />
+            <Cursor />
+            </div>
+          </AnimatePresence>
+      )}
+    </>
+  );
+
+}

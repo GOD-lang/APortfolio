@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gloock&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+    box-sizing: border-box;
+    cursor: none;
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+
+@font-face {
+    font-family: 'Poiret One', cursive;
+    src: url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+}
+
+@font-face {
+    font-family: 'Montserrat', sans-serif;
+    src: url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+}
+
+@font-face {
+    font-family: 'Gloock', serif;
+    src: url('https://fonts.googleapis.com/css2?family=Gloock&display=swap');
+}
+
+
+
+
+
+
