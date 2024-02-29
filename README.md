@@ -1,4 +1,5 @@
 ## About Portfolio
+live : https://a-portfolio-beige.vercel.app/
 
 - Created with NextJS, TailwindCSS ,Framer Motion and with the help of ChatGPT
 - Is mobile friendly
